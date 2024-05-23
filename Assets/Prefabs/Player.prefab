@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 72731312389363143}
   - component: {fileID: 918306355787782782}
   - component: {fileID: 2423495542859099163}
-  m_Layer: 0
+  - component: {fileID: 5591797100383680365}
+  m_Layer: 6
   m_Name: PlayerCharacter_Skelly
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: ea0b1a5a4b465ec40a625ceab3f64a17, type: 2}
-  initialSkinName: 
+  initialSkinName: Shield_V.1
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
@@ -254,6 +255,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5591797100383680365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441028755672867495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf05437bd8fdcc841a871875e568ca32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7471732775797705359
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4723084547969788911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3525856070564305565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CamerFollowAnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
