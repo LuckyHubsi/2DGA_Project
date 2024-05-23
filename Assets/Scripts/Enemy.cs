@@ -123,6 +123,23 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Attack", false);
     }
 
+    public void Dying()
+    {
+        cooling = false;
+        attackMode = false;
+        anim.SetBool("Attack", false);
+        anim.SetBool("CanWalk", false);
+        moveSpeed = 0;
+        
+
+        anim.SetBool("TookDamage", true);
+    }
+
+    void Death()
+    {
+        Destroy(this.gameObject);
+    }
+
     void RaycastDebugger()
     {
         if (distance > attackDistance)

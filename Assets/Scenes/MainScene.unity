@@ -2829,38 +2829,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 918306355787782782, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612072959124804208, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612072959124804208, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612072959124804208, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3413576087962729399, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: state
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525856070564305565, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525856070564305565, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525856070564305565, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4723084547969788911, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2908,10 +2876,6 @@ PrefabInstance:
     - target: {fileID: 7471732775797705359, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7471732775797705359, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8646634624732852584, guid: 5a59fa14b1de6ba4982f8a755a52863c, type: 3}
       propertyPath: m_Mesh
@@ -3749,53 +3713,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 811373701976910624, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2609285763480716369, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3829279137256672207, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4264196664597705307, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
       propertyPath: m_Name
       value: EnemySkeleton
       objectReference: {fileID: 0}
-    - target: {fileID: 4264196664597705307, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486959581305057492, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338438756536357444, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7702436857023065826, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8435166624272738579, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435166624272738579, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435166624272738579, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435166624272738579, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8435166624272738579, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
       propertyPath: m_LocalPosition.x

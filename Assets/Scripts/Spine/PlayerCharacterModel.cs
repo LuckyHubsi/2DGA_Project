@@ -12,9 +12,6 @@ public class PlayerCharacterModel : MonoBehaviour
     public float moveSpeed = 5f;
     #endregion
 
-    [SerializeField]
-        float jumpPower = 7f;
-
     #region jump
     public void TryJump()
     {
@@ -43,7 +40,7 @@ public class PlayerCharacterModel : MonoBehaviour
         float jumpTime = 1.7f;
         float half = jumpTime * 0.5f;
 
-        //float jumpPower = 7f;
+        float jumpPower = 7f;
 
         for (float t = 0; t < half; t += Time.deltaTime)
         {
@@ -119,9 +116,28 @@ public class PlayerCharacterModel : MonoBehaviour
     {
         state = PlayerState.Attacking;
 
-        Debug.Log("Attacking...");
+        // Find the BoxCollider2D component on the "hitbox" child object
+        BoxCollider2D hitboxCollider = transform.Find("HitBox").GetComponent<BoxCollider2D>();
+
+        if (hitboxCollider == null)
+        {
+            Debug.LogError("Hitbox BoxCollider2D not found!");
+            yield break;
+        }
+
+        // Store the original size and offset of the hitbox collider
+        Vector2 originalSize = hitboxCollider.size;
+        Vector2 originalOffset = hitboxCollider.offset;
+
+        // Extend the hitbox collider forward (adjust as needed)
+        hitboxCollider.size += new Vector2(2f, 0f);
+        hitboxCollider.offset += new Vector2(1f, 0f);
 
         yield return new WaitForSeconds(0.7f); // Adjust the attack duration
+
+        // Reset the hitbox collider size and offset
+        hitboxCollider.size = originalSize;
+        hitboxCollider.offset = originalOffset;
 
         state = PlayerState.Idle;
     }
@@ -139,8 +155,6 @@ public class PlayerCharacterModel : MonoBehaviour
     IEnumerator ShieldRoutine()
     {
         state = PlayerState.Shielding;
-
-        Debug.Log("Shielding...");
 
         yield return new WaitForSeconds(0.7f); // Adjust the attack duration
 

@@ -17,6 +17,7 @@ public class PlayerCharacterController : MonoBehaviour
     public string attackButton = "Fire1";
     public string shieldButton = "Fire2";
 
+
     // get a reference to the model
     public PlayerCharacterModel model;
     #endregion
