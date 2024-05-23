@@ -87,14 +87,16 @@ public class PlayerCharacterModel : MonoBehaviour
             if (state != PlayerState.Jumping)
             {
                 state = (direction == 0) ? PlayerState.Idle : PlayerState.Running;
-            }
 
-            Vector3 movement = new Vector3(direction * moveSpeed * Time.deltaTime, 0f, 0f);
-            transform.Translate(movement);
 
-            if (direction != 0)
-            {
-                facingLeft = direction < 0f;
+                Vector3 movement = new Vector3(direction * moveSpeed * Time.deltaTime, 0f, 0f);
+                transform.Translate(movement);
+
+                if (direction != 0)
+                {
+                    facingLeft = direction < 0f;
+                }
+
             }
         }
     }
@@ -117,8 +119,6 @@ public class PlayerCharacterModel : MonoBehaviour
 
         yield return new WaitForSeconds(0.7f); // Adjust the attack duration
 
-        //yield return new WaitForSpineAnimationComplete(view.skeletonAnimation.AnimationState.GetCurrent(0));
-
         state = PlayerState.Idle;
     }
     #endregion
@@ -138,7 +138,7 @@ public class PlayerCharacterModel : MonoBehaviour
 
         Debug.Log("Shielding...");
 
-        yield return new WaitForSpineAnimationComplete(view.skeletonAnimation.AnimationState.GetCurrent(0));
+        yield return new WaitForSeconds(0.7f); // Adjust the attack duration
 
         state = PlayerState.Idle;
     }
