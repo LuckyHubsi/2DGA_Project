@@ -9,8 +9,11 @@ public class PlayerCharacterModel : MonoBehaviour
     public bool facingLeft;
     public PlayerCharacterView view; // Reference to the view
 
-    public float moveSpeed = 5f; // Adjust this speed according to your needs
+    public float moveSpeed = 5f;
     #endregion
+
+    [SerializeField]
+        float jumpPower = 7f;
 
     #region jump
     public void TryJump()
@@ -39,7 +42,8 @@ public class PlayerCharacterModel : MonoBehaviour
 
         float jumpTime = 1.7f;
         float half = jumpTime * 0.5f;
-        float jumpPower = 7f;
+
+        //float jumpPower = 7f;
 
         for (float t = 0; t < half; t += Time.deltaTime)
         {

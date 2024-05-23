@@ -258,7 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayCastLength: 100
-  attackDistance: 3.5
+  attackDistance: 3
   moveSpeed: 1
   timer: 2
 --- !u!1 &5486959581305057492
