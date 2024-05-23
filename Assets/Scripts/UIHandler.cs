@@ -10,15 +10,15 @@ using TMPro;
 /// 
 public class UIHandler : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI loadLevelButton;
+    [SerializeField] Button loadLevelButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        //loadLevelButton.onClick.AddListener(LoadLevel);
+        loadLevelButton.onClick.AddListener(LoadLevel);
     }
 
     private void LoadLevel() {
-        ScenesManager.Instance.LoadScene(ScenesManager.Scene.SpineSkinChange);
+        ScenesManager.Instance.LoadScene(ScenesManager.Scene.MainScene);
     }
 }

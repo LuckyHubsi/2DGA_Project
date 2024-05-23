@@ -38,7 +38,7 @@ public class ScenesManager : MonoBehaviour
     // the names in the enum have to match the names of your scenes
     public enum Scene { 
         UIScene,
-        SpineSkinChange
+        MainScene
     }
 
     public void QuitGame() {
