@@ -130,13 +130,13 @@ public class PlayerCharacterModel : MonoBehaviour
         Vector2 originalOffset = hitboxCollider.offset;
 
         // Determine the new size and offset based on the facing direction
-        Vector2 newSize = originalSize + new Vector2(2f, 0f);
-        Vector2 newOffset = originalOffset + new Vector2(1f, 0f);
+        Vector2 newSize = originalSize + new Vector2(15f, 0f);
+        Vector2 newOffset = originalOffset + new Vector2(7.5f, 0f);
 
         if (facingLeft)
         {
             // If facing left, move the offset to the left by two times the width
-            newOffset = originalOffset + new Vector2(-1.5f - originalSize.x, 0f);
+            newOffset = originalOffset + new Vector2(-4.5f - originalSize.x, 0f);
         }
 
         // Set the new size and offset
