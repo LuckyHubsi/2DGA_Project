@@ -29,30 +29,54 @@
 
 using UnityEngine;
 
-namespace Spine.Unity {
+namespace Spine.Unity
+{
 
-	/// <summary>
-	/// Utility component to support flipping of hinge chains (chains of HingeJoint objects) along with the parent skeleton.
-	/// 
-	/// Note: This component is automatically attached when calling "Create Hinge Chain" at <see cref="SkeletonUtilityBone"/>.
-	/// </summary>
-	[RequireComponent(typeof(Rigidbody2D))]
-	public class FollowLocationRigidbody2D : MonoBehaviour {
+    /// <summary>
+    /// Utility component to support flipping of hinge chains (chains of HingeJoint objects) along with the parent skeleton.
+    /// 
+    /// Note: This component is automatically attached when calling "Create Hinge Chain" at <see cref="SkeletonUtilityBone"/>.
+    /// </summary>
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class FollowLocationRigidbody2D : MonoBehaviour
+    {
 
-		public Transform reference;
-		public bool followFlippedX;
-		Rigidbody2D ownRigidbody;
+        public Transform reference;
+        public bool followFlippedX;
+        Rigidbody2D ownRigidbody;
 
-		private void Awake () {
-			ownRigidbody = this.GetComponent<Rigidbody2D>();
-		}
+        // Define the level boundaries
+        public float minX;
+        public float maxX;
+        public float minY;
+        public float maxY;
 
-		void FixedUpdate () {
-			if (followFlippedX) {
-				ownRigidbody.rotation = ((-reference.rotation.eulerAngles.z + 270f) % 360f) - 90f;
-			} else
-				ownRigidbody.rotation = reference.rotation.eulerAngles.z;
-			ownRigidbody.position = reference.position;
-		}
-	}
+        private void Awake()
+        {
+            ownRigidbody = this.GetComponent<Rigidbody2D>();
+        }
+
+        void FixedUpdate()
+        {
+            if (followFlippedX)
+            {
+                ownRigidbody.rotation = ((-reference.rotation.eulerAngles.z + 270f) % 360f) - 90f;
+            }
+            else
+            {
+                ownRigidbody.rotation = reference.rotation.eulerAngles.z;
+            }
+
+            // Get the desired position based on the reference
+            Vector2 desiredPosition = reference.position;
+
+            // Clamp the desired position to the level boundaries
+            float clampedX = Mathf.Clamp(desiredPosition.x, minX, maxX);
+            float clampedY = Mathf.Clamp(desiredPosition.y, minY, maxY);
+
+            // Set the clamped position to the rigidbody
+            ownRigidbody.position = new Vector2(clampedX, clampedY);
+        }
+    }
 }
+
