@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     private bool inRange;
     private bool cooling;
     private float intTimer;
+    private bool facingLeft = true; // Determines the initial facing direction
     #endregion
 
     private void Awake()
@@ -30,11 +31,20 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void Start()
+    {
+        // Flip the enemy to face the correct direction
+        if (!facingLeft)
+        {
+            Flip();
+        }
+    }
+
     void Update()
     {
         if (inRange)
         {
-            hit = Physics2D.Raycast(rayCast.position, Vector2.left, rayCastLength, raycastMask);
+            hit = Physics2D.Raycast(rayCast.position, facingLeft ? Vector2.right : Vector2.left, rayCastLength, raycastMask);
             RaycastDebugger();
         }
 
@@ -43,12 +53,9 @@ public class Enemy : MonoBehaviour
         {
             EnemyLogic();
         }
-        else if (hit.collider == null)
+        else
         {
             inRange = false;
-        }
-        else if (inRange == false)
-        {
             anim.SetBool("CanWalk", false);
             StopAttack();
         }
@@ -91,7 +98,6 @@ public class Enemy : MonoBehaviour
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Skeleton_Attacking"))
         {
             Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
-
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }
@@ -130,7 +136,6 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Attack", false);
         anim.SetBool("CanWalk", false);
         moveSpeed = 0;
-        
 
         anim.SetBool("TookDamage", true);
     }
@@ -144,16 +149,30 @@ public class Enemy : MonoBehaviour
     {
         if (distance > attackDistance)
         {
-            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.red);
+            Debug.DrawRay(rayCast.position, facingLeft ? Vector2.right * rayCastLength : Vector2.left * rayCastLength, Color.red);
         }
         else if (attackDistance > distance)
         {
-            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.green);
+            Debug.DrawRay(rayCast.position, facingLeft ? Vector2.right * rayCastLength : Vector2.left * rayCastLength, Color.green);
         }
     }
 
     public void TriggerCooling()
     {
         cooling = true;
+    }
+
+    public void SetFacingDirection(bool faceLeft)
+    {
+        facingLeft = faceLeft;
+    }
+
+    void Flip()
+    {
+        // Get the current rotation
+        Vector3 currentRotation = transform.localEulerAngles;
+
+        // Flip the rotation along the y-axis to 180 degrees
+        transform.localEulerAngles = new Vector3(currentRotation.x, 180f, currentRotation.z);
     }
 }

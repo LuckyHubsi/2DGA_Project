@@ -37,7 +37,7 @@ public class ScenesManager : MonoBehaviour
     // to access the scenes that are currently in the build go to "File > Build Settings > Scenes in Build"
     // the names in the enum have to match the names of your scenes
     public enum Scene { 
-        UIScene,
+        MenuScene,
         MainScene
     }
 
@@ -45,11 +45,11 @@ public class ScenesManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadMenu() {
+/*    public void LoadMenu() {
         // we use Unity's SceneManager class to load a scene by name or build index (can be found in build settings menu)
         SceneManager.LoadScene((int)Scene.UIScene);
         //SceneManager.LoadScene(Scene.UIScene.ToString());
-    }
+    }*/
 
     public void LoadScene(Scene scene) {
         SceneManager.LoadScene(scene.ToString());
@@ -59,7 +59,7 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    // unity can load scenes asynchronously
+/*    // unity can load scenes asynchronously
     // this allows us to load large scenes in the background while we show a loading screen or continue the game
     // Needs to be marked as "async" !!!
     public async void LoadSceneAsync() {
@@ -85,12 +85,12 @@ public class ScenesManager : MonoBehaviour
 
         // enable unity to switch the scene after it finished loading
         scene.allowSceneActivation = true;
-    }
+    }*/
 
     private void Update()
     {
         // fill the bar smoothly through the MoveTowards
         // interpolates between the current fillAmount and the newly calulcated loading percentage in the LoadSceneAsync func
-        progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, Time.deltaTime * 3);
+        //progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, Time.deltaTime * 3);
     }
 }

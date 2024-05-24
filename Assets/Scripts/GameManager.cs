@@ -1,23 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     [SerializeField]
-    private int health;
+    private float health;
+    [SerializeField] 
+    private Image healthBar;
+
+    private float maxHealth;
 
     [SerializeField]
-    private float gameTimer = 0f; // Add game timer
+    private TextMeshProUGUI timerText;
 
-    public int GetHealth() => health;
-    public void DecreaseHealth(int decreaseBy) => health -= decreaseBy;
+    private float gameTimer;
+
+    public float GetHealth() => health;
+
+    public void DecreaseHealth(int decreaseBy)
+    {
+        health -= decreaseBy;
+        healthBar.fillAmount = health / maxHealth;
+    }
     public void IncreaseHealth(int increaseBy) => health += increaseBy;
 
-    public float GetGameTimer() => gameTimer;
-
+    // Start is called before the first frame update
     void Start()
     {
         if (instance != null)
@@ -28,22 +39,30 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        // Start the game timer
-        StartCoroutine(UpdateGameTimer());
+        maxHealth = GetHealth();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Current Health: " + health);
+        // Update the game timer
+        gameTimer += Time.deltaTime;
+
+        // Update the UI text
+        UpdateTimerUI();
+
+        if (health <= 0)
+        {
+
+        }
     }
 
-    IEnumerator UpdateGameTimer()
+    // Function to update the timer UI
+    private void UpdateTimerUI()
     {
-        while (true)
+        if (timerText != null)
         {
-            yield return new WaitForSeconds(1f);
-            gameTimer += 1f;
-            Debug.Log("Game Timer: " + gameTimer);
+            timerText.text = "Survived Time: " + Mathf.Floor(gameTimer).ToString();
         }
     }
 }

@@ -4,52 +4,42 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // The enemy prefab to be spawned
-    public float spawnInterval = 5f; // Initial time interval between spawns
-    public float spawnIntervalReduction = 0.1f; // The amount by which the interval is reduced
-    public float minSpawnInterval = 1f; // Minimum possible interval between spawns
+    public GameObject enemyPrefab; // Enemy prefab to spawn
     public Transform[] spawnPoints; // Array of spawn points
+    public float spawnInterval = 5f; // Interval between spawns
+    public bool facingLeft = true; // Determines the initial facing direction of the spawned enemies
 
-    private float currentSpawnInterval;
+    private float nextSpawnTime = 0f;
 
-    void Start()
+    void Update()
     {
-        currentSpawnInterval = spawnInterval;
-        StartCoroutine(SpawnEnemies());
-    }
-
-    IEnumerator SpawnEnemies()
-    {
-        while (true)
+        if (Time.time >= nextSpawnTime)
         {
-            yield return new WaitForSeconds(currentSpawnInterval);
-
-            // Spawn enemies based on the game timer from GameManager
-            float gameTimer = GameManager.instance.GetGameTimer();
-            int enemyCount = Mathf.FloorToInt(gameTimer / 10) + 1; // Adjust this formula as needed
-            for (int i = 0; i < enemyCount; i++)
-            {
-                SpawnEnemy();
-            }
-
-            // Decrease the spawn interval to increase difficulty over time
-            if (currentSpawnInterval > minSpawnInterval)
-            {
-                currentSpawnInterval -= spawnIntervalReduction;
-            }
+            SpawnEnemy();
+            nextSpawnTime = Time.time + spawnInterval;
         }
     }
 
     void SpawnEnemy()
     {
-        if (spawnPoints.Length > 0)
+        if (spawnPoints.Length == 0)
         {
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            Debug.LogWarning("No spawn points assigned.");
+            return;
         }
-        else
+
+        // Select a random spawn point
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        Transform spawnPoint = spawnPoints[spawnIndex];
+
+        // Instantiate the enemy at the selected spawn point
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+
+        // Set the enemy's initial facing direction
+        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        if (enemyScript != null)
         {
-            Debug.LogError("No spawn points assigned in the EnemySpawner script.");
+            enemyScript.SetFacingDirection(facingLeft);
         }
     }
 }
