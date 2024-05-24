@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
     public float timer; // Timer for cooldown between attacks
     public GameObject healthPickUpPrefab;
+    public GameObject maxHealthPickUpPrefab;
     #endregion
 
     #region Private Variables
@@ -145,10 +146,16 @@ public class Enemy : MonoBehaviour
     {
         Destroy(this.gameObject);
 
-        int randomNumber = Random.Range(0, 10);
-        if (randomNumber == 0 && healthPickUpPrefab != null)
+        int randomNumberHealthDrop = Random.Range(0, 10);
+        if (randomNumberHealthDrop == 0 && healthPickUpPrefab != null)
         {
             Instantiate(healthPickUpPrefab, transform.position, Quaternion.identity);
+        }
+
+        int randomNumberMaxHealthDrop = Random.Range(0, 20);
+        if (randomNumberMaxHealthDrop == 0 && maxHealthPickUpPrefab != null)
+        {
+            Instantiate(maxHealthPickUpPrefab, transform.position, Quaternion.identity);
         }
     }
 

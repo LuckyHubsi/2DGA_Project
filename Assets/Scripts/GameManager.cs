@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
 
         // Update the UI text
         UpdateTimerUI();
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 
     // Function to update the timer UI

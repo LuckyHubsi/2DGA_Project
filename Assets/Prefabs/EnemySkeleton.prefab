@@ -262,6 +262,7 @@ MonoBehaviour:
   moveSpeed: 1
   timer: 2
   healthPickUpPrefab: {fileID: 2525167509567877249, guid: 22fa8de1ed0c1e547850148e8a087fcc, type: 3}
+  maxHealthPickUpPrefab: {fileID: 2525167509567877249, guid: 924495c0d608d12458d724ab735bae22, type: 3}
 --- !u!1 &5486959581305057492
 GameObject:
   m_ObjectHideFlags: 0
