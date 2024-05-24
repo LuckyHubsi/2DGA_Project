@@ -10,6 +10,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour, ICollectable
 {
     void ICollectable.PickUp() {
+        GameManager.instance.IncreaseHealth(1);
         Destroy(gameObject);
     }
 }

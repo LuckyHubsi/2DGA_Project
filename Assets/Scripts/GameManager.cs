@@ -26,7 +26,11 @@ public class GameManager : MonoBehaviour
         health -= decreaseBy;
         healthBar.fillAmount = health / maxHealth;
     }
-    public void IncreaseHealth(int increaseBy) => health += increaseBy;
+    public void IncreaseHealth(int increaseBy)
+    {
+        health += increaseBy;
+        healthBar.fillAmount = health / maxHealth;
+    }
 
     // Start is called before the first frame update
     void Start()

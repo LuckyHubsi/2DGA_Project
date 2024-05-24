@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionWithEnemy : MonoBehaviour
+public class PlayerInteractions : MonoBehaviour
 {
     private PlayerCharacterModel playerModel;
 
     private void Start()
     {
-        // Get the PlayerCharacterModel component attached to the same GameObject
-        playerModel = GetComponent<PlayerCharacterModel>();
+        // Get the PlayerCharacterModel component attached to the parent GameObject
+        playerModel = transform.parent.GetComponent<PlayerCharacterModel>();
         if (playerModel == null)
         {
-            Debug.LogError("PlayerCharacterModel component not found on the player!");
+            Debug.LogError("PlayerCharacterModel component not found on the parent GameObject!");
         }
     }
 
@@ -36,6 +34,19 @@ public class InteractionWithEnemy : MonoBehaviour
             else if (playerModel.state != PlayerCharacterModel.PlayerState.Shielding)
             {
                 GameManager.instance.DecreaseHealth(1);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Collectable") && playerModel != null)
+        {
+            if (playerModel.state != PlayerCharacterModel.PlayerState.Attacking)
+            {
+                // Call the PickUp function of the Collectable script
+                ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
+                if (collectable != null)
+                {
+                    collectable.PickUp();
+                }
             }
         }
     }
