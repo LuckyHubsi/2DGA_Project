@@ -42,7 +42,7 @@ public class PlayerInteractions : MonoBehaviour
             if (playerModel.state != PlayerCharacterModel.PlayerState.Attacking)
             {
                 // Call the PickUp function of the Collectable script
-                ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
+                Collectable collectable = collision.gameObject.GetComponent<Collectable>();
                 if (collectable != null)
                 {
                     collectable.PickUp();

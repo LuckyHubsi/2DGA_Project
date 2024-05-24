@@ -11,14 +11,21 @@ using TMPro;
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] Button loadLevelButton;
+    [SerializeField] Button quitGameButton;
 
     // Start is called before the first frame update
     void Start()
     {
         loadLevelButton.onClick.AddListener(LoadLevel);
+        quitGameButton.onClick.AddListener(QuitGame);
     }
 
     private void LoadLevel() {
         ScenesManager.Instance.LoadScene(ScenesManager.Scene.MainScene);
+    }
+
+    private void QuitGame()
+    {
+        Application.Quit();
     }
 }

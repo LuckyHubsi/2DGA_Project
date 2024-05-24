@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.gameObject.TryGetComponent(out ICollectable collectableObj)) {
+        if(collider.gameObject.TryGetComponent(out Collectable collectableObj)) {
             collectableObj.PickUp();
             points++;
 

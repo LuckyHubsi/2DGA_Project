@@ -23,13 +23,24 @@ public class GameManager : MonoBehaviour
 
     public void DecreaseHealth(int decreaseBy)
     {
-        health -= decreaseBy;
-        healthBar.fillAmount = health / maxHealth;
+        if (health <= 1)
+        {
+            ScenesManager.Instance.LoadScene(ScenesManager.Scene.GameOverScene);
+            health = maxHealth;
+        }
+        else
+        {
+            health -= decreaseBy;
+            healthBar.fillAmount = health / maxHealth;
+        }
     }
     public void IncreaseHealth(int increaseBy)
     {
-        health += increaseBy;
-        healthBar.fillAmount = health / maxHealth;
+        if (health != maxHealth)
+        {
+            health += increaseBy;
+            healthBar.fillAmount = health / maxHealth;
+        }
     }
 
     // Start is called before the first frame update
@@ -41,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         maxHealth = GetHealth();
     }
@@ -54,11 +65,6 @@ public class GameManager : MonoBehaviour
 
         // Update the UI text
         UpdateTimerUI();
-
-        if (health <= 0)
-        {
-
-        }
     }
 
     // Function to update the timer UI

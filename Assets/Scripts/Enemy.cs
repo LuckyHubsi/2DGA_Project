@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float attackDistance; // Minimum distance for attack
     public float moveSpeed;
     public float timer; // Timer for cooldown between attacks
+    public GameObject healthPickUpPrefab;
     #endregion
 
     #region Private Variables
@@ -143,6 +144,12 @@ public class Enemy : MonoBehaviour
     void Death()
     {
         Destroy(this.gameObject);
+
+        int randomNumber = Random.Range(0, 10);
+        if (randomNumber == 0 && healthPickUpPrefab != null)
+        {
+            Instantiate(healthPickUpPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     void RaycastDebugger()

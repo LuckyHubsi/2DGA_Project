@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using Spine.Unity;
 
 public class PlayerCharacterModel : MonoBehaviour
 {
@@ -10,6 +9,13 @@ public class PlayerCharacterModel : MonoBehaviour
     public PlayerCharacterView view; // Reference to the view
 
     public float moveSpeed = 5f;
+
+    // Cooldown variables
+    public float attackCooldown = 1.5f;
+    public float shieldCooldown = 2f;
+
+    private float attackCooldownTimer;
+    private float shieldCooldownTimer;
     #endregion
 
     #region jump
@@ -89,7 +95,6 @@ public class PlayerCharacterModel : MonoBehaviour
             {
                 state = (direction == 0) ? PlayerState.Idle : PlayerState.Running;
 
-
                 Vector3 movement = new Vector3(direction * moveSpeed * Time.deltaTime, 0f, 0f);
                 transform.Translate(movement);
 
@@ -97,7 +102,6 @@ public class PlayerCharacterModel : MonoBehaviour
                 {
                     facingLeft = direction < 0f;
                 }
-
             }
         }
     }
@@ -106,7 +110,7 @@ public class PlayerCharacterModel : MonoBehaviour
     #region attack
     public void TryAttack()
     {
-        if (state != PlayerState.Attacking && state != PlayerState.Shielding && state != PlayerState.Jumping)
+        if (state != PlayerState.Attacking && state != PlayerState.Shielding && state != PlayerState.Jumping && attackCooldownTimer <= 0)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -150,14 +154,14 @@ public class PlayerCharacterModel : MonoBehaviour
         hitboxCollider.offset = originalOffset;
 
         state = PlayerState.Idle;
+        attackCooldownTimer = attackCooldown;
     }
-
     #endregion
 
     #region shield
     public void TryShield()
     {
-        if (state != PlayerState.Shielding && state != PlayerState.Attacking && state != PlayerState.Jumping)
+        if (state != PlayerState.Shielding && state != PlayerState.Attacking && state != PlayerState.Jumping && shieldCooldownTimer <= 0)
         {
             StartCoroutine(ShieldRoutine());
         }
@@ -167,11 +171,26 @@ public class PlayerCharacterModel : MonoBehaviour
     {
         state = PlayerState.Shielding;
 
-        yield return new WaitForSeconds(0.7f); // Adjust the attack duration
+        yield return new WaitForSeconds(0.7f); // Adjust the shield duration
 
         state = PlayerState.Idle;
+        shieldCooldownTimer = shieldCooldown;
     }
     #endregion
+
+    void Update()
+    {
+        // Update cooldown timers
+        if (attackCooldownTimer > 0)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
+
+        if (shieldCooldownTimer > 0)
+        {
+            shieldCooldownTimer -= Time.deltaTime;
+        }
+    }
 
     public enum PlayerState
     {

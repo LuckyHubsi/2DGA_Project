@@ -62,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 5776526317212894014}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8695702637536499330
 MonoBehaviour:
@@ -79,5 +79,5 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4264196664597705307, guid: 815a10812600ded48ae63d58259a2e70, type: 3}
   spawnPoints:
   - {fileID: 5776526317212894014}
-  spawnInterval: 5
+  spawnInterval: 3
   facingLeft: 1
