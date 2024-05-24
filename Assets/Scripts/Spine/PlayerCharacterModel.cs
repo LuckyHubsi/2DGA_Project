@@ -129,9 +129,19 @@ public class PlayerCharacterModel : MonoBehaviour
         Vector2 originalSize = hitboxCollider.size;
         Vector2 originalOffset = hitboxCollider.offset;
 
-        // Extend the hitbox collider forward (adjust as needed)
-        hitboxCollider.size += new Vector2(2f, 0f);
-        hitboxCollider.offset += new Vector2(1f, 0f);
+        // Determine the new size and offset based on the facing direction
+        Vector2 newSize = originalSize + new Vector2(2f, 0f);
+        Vector2 newOffset = originalOffset + new Vector2(1f, 0f);
+
+        if (facingLeft)
+        {
+            // If facing left, move the offset to the left by two times the width
+            newOffset = originalOffset + new Vector2(-1.5f - originalSize.x, 0f);
+        }
+
+        // Set the new size and offset
+        hitboxCollider.size = newSize;
+        hitboxCollider.offset = newOffset;
 
         yield return new WaitForSeconds(0.7f); // Adjust the attack duration
 
@@ -141,6 +151,7 @@ public class PlayerCharacterModel : MonoBehaviour
 
         state = PlayerState.Idle;
     }
+
     #endregion
 
     #region shield
