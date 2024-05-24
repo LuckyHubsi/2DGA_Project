@@ -440,5 +440,7 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 54cb90d5d2b2c6b408e64c73f03842ef, type: 3}
   - {fileID: 8300000, guid: 0f78f99ab9bb2b9449172ec01cb5d917, type: 3}
+  - {fileID: 8300000, guid: a0db798350b4a3d4a8492ae868f63fdf, type: 3}
+  - {fileID: 8300000, guid: 2b543b43a46379d4baeecfd2f7fea56b, type: 3}
+  enemySfxClips:
   - {fileID: 8300000, guid: c1c2209f476ea65418c404f40229c88d, type: 3}
-  enemySfxClips: []
