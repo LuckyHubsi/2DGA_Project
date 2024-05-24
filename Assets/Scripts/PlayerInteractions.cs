@@ -34,7 +34,10 @@ public class PlayerInteractions : MonoBehaviour
             else if (playerModel.state != PlayerCharacterModel.PlayerState.Shielding)
             {
                 GameManager.instance.DecreaseHealth(1);
+
+                SoundManager.instance.PlayEnemySFX("Enemy_Skeleton_Attack", transform.position);
             }
+            else SoundManager.instance.PlaySFX("Player_Shield_Block", transform.position);
         }
 
         if (collision.gameObject.CompareTag("Collectable") && playerModel != null)
@@ -46,6 +49,8 @@ public class PlayerInteractions : MonoBehaviour
                 if (collectable != null)
                 {
                     collectable.PickUp();
+
+                    SoundManager.instance.PlaySFX("Collectable_Collect", transform.position);
                 }
             }
         }

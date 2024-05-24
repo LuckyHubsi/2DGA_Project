@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject);
 
         maxHealth = GetHealth();
+
+        SoundManager.instance.PlayMusic("Game_Music");
     }
 
     // Update is called once per frame

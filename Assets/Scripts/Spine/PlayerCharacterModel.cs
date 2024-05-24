@@ -120,6 +120,8 @@ public class PlayerCharacterModel : MonoBehaviour
     {
         state = PlayerState.Attacking;
 
+        SoundManager.instance.PlaySFX("Player_Attack", transform.position);
+
         // Find the BoxCollider2D component on the "hitbox" child object
         BoxCollider2D hitboxCollider = transform.Find("HitBox").GetComponent<BoxCollider2D>();
 
@@ -170,6 +172,8 @@ public class PlayerCharacterModel : MonoBehaviour
     IEnumerator ShieldRoutine()
     {
         state = PlayerState.Shielding;
+
+        SoundManager.instance.PlaySFX("Player_Shield", transform.position);
 
         yield return new WaitForSeconds(0.7f); // Adjust the shield duration
 

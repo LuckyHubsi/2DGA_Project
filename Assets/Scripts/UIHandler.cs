@@ -18,6 +18,8 @@ public class UIHandler : MonoBehaviour
     {
         loadLevelButton.onClick.AddListener(LoadLevel);
         quitGameButton.onClick.AddListener(QuitGame);
+
+        SoundManager.instance.PlayMusic("Menu_Music");
     }
 
     private void LoadLevel() {
